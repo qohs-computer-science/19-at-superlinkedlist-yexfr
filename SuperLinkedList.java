@@ -1,31 +1,112 @@
+/*
+*   Name: Nick Griffith
+*   Period: 6
+*   Date: 12/2/25
+*   Description: Extension of the native LinkedList with more advanced methods intended for string elements.
+*/
+
 import java.util.LinkedList;
 import java.util.Iterator;
+import java.util.HashSet;
 
 public class SuperLinkedList extends LinkedList<String> {
     public boolean removeVowels() {
-        return false;
-    }
-
+        boolean removed = false;
+        Iterator<String> iter = this.iterator();
+        
+        while (iter.hasNext()) {
+            if (isVowel(iter.next())) {
+                iter.remove();
+                removed = true;
+            } // end if
+        } // end while
+        
+        return removed;
+    } // end method
+    
     public boolean removeConsonants() {
-        return false;
-    }
+        boolean removed = false;
+        Iterator<String> iter = this.iterator();
+        
+        while (iter.hasNext()) {
+            if (isConsonant(iter.next())) {
+                iter.remove();
+                removed = true;
+            } // end if
+        } // end while
+        
+        return removed;
+    } // end method
 
     public LinkedList<String> removeDuplicates() {
-        return null;
-    }
-
+        LinkedList<String> removedList = new LinkedList<>();
+        HashSet<String> seenSet = new HashSet<>();
+        Iterator<String> iter = this.iterator();
+        
+        while (iter.hasNext()) {
+            String element = iter.next();
+            if (seenSet.contains(element)) {
+                removedList.add(element);
+                iter.remove();
+            } /* end if */ else seenSet.add(element);
+        } // end while
+        
+        return removedList;
+    } // end method
+    
     public LinkedList<String> concatenateStrings() {
-
-        return null;
-    }
-
+        LinkedList<String> resultList = new LinkedList<>();
+        String concatenated = "";
+        Iterator<String> iter = this.iterator();
+        
+        while (iter.hasNext()) {
+            String element = iter.next();
+            concatenated += element;
+            resultList.add(concatenated);
+        } // end while
+        
+        return resultList;
+    } // end method
+    
     public LinkedList<String> mix(LinkedList<String> list2) {
-
-        return null;
-    }
-
+        LinkedList<String> resultList = new LinkedList<>();
+        Iterator<String> iter1 = this.iterator();
+        Iterator<String> iter2 = list2.iterator();
+        
+        while (iter1.hasNext() && iter2.hasNext()) {
+            resultList.add(iter1.next());
+            resultList.add(iter2.next());
+        } // end while
+        
+        return resultList;
+    } // end mix
+    
+    @Override
     public String toString() {
+        if (this.isEmpty()) return "";
+        
+        StringBuilder result = new StringBuilder();
+        Iterator<String> iter = this.iterator();
+        
+        while (iter.hasNext()) {
+            result.append(iter.next());
+            if (iter.hasNext()) result.append(", ");
+        } // end while
+        
+        return result.toString();
+    } // end method
 
-        return "";
-    }
-} // end SuperLinkedList
+    private boolean isVowel(String element) {
+        if (element == null || element.length() != 1) return false;
+        
+        char ch = element.toLowerCase().charAt(0);
+        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    } // end helper method
+    
+    private boolean isConsonant(String element) {
+        if (element == null || element.length() != 1) return false;
+        
+        char ch = element.toLowerCase().charAt(0);
+        return Character.isLetter(ch) && !isVowel(element);
+    } // end helper method
+} // end class
