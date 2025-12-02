@@ -8,8 +8,7 @@ public class SuperLinkedList extends LinkedList<String> {
         Iterator<String> iter = this.iterator();
         
         while (iter.hasNext()) {
-            String element = iter.next();
-            if (isVowel(element)) {
+            if (isVowel(iter.next())) {
                 iter.remove();
                 removed = true;
             }
@@ -23,8 +22,7 @@ public class SuperLinkedList extends LinkedList<String> {
         Iterator<String> iter = this.iterator();
         
         while (iter.hasNext()) {
-            String element = iter.next();
-            if (isConsonant(element)) {
+            if (isConsonant(iter.next())) {
                 iter.remove();
                 removed = true;
             }
