@@ -109,4 +109,4 @@ public class SuperLinkedList extends LinkedList<String> {
         char ch = element.toLowerCase().charAt(0);
         return Character.isLetter(ch) && !isVowel(element);
     } // end helper method
-}
+} // end class
