@@ -1,3 +1,10 @@
+/*
+*   Name: Nick Griffith
+*   Period: 6
+*   Date: 12/2/25
+*   Description: Tester file for SuperLinkedList, demonstrating the new methods and capabilities of the new class.
+*/
+
 class SLLTester {
       public static void main(String[] args) {
         SuperLinkedList list1 = new SuperLinkedList();
